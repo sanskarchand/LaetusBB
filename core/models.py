@@ -45,7 +45,8 @@ class Profile(models.Model):
     level =  models.CharField(max_length=5, choices=Level.choices, 
                         default=Level.USER)
     
-
+    avatar = models.ImageField('avatar image')
+    signature = models.CharField(max_length=512)
 
 
 class Attachment(models.Model):
