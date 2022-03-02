@@ -8,6 +8,9 @@ class Forum(models.Model):
     category = models.CharField(max_length=256)
     title = models.CharField(max_length=256)
 
+    def __str__(self):
+        return f"<Forum {self.title, self.category}>"
+
 class Thread(models.Model):
     # many-to-one
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
@@ -40,13 +43,15 @@ class Profile(models.Model):
         BANNED = 'B&', _('Forsaken')
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    #TODO: remove; auth.User already has a joined date
     join_date = models.DateTimeField('date joined')
     reputation = models.IntegerField('reputation points')
     level =  models.CharField(max_length=5, choices=Level.choices, 
                         default=Level.USER)
     
-    avatar = models.ImageField('avatar image')
-    signature = models.CharField(max_length=512)
+    avatar = models.ImageField(default='laetusbb_def_avatar.png')
+    signature = models.CharField(max_length=512, null=True)
 
 
 class Attachment(models.Model):
