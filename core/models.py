@@ -42,7 +42,7 @@ class Profile(models.Model):
         USER = 'PLEB', _('Plebeian')
         BANNED = 'B&', _('Forsaken')
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     #TODO: remove; auth.User already has a joined date
     join_date = models.DateTimeField('date joined')
