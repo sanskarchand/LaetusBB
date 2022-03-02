@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 class Forum(models.Model):
     # access threads using thread_set
@@ -22,16 +23,29 @@ class Post(models.Model):
     edit_date = models.DateTimeField('date edited')
     pub_date = models.DateTimeField('date published')
     
-    thanked_by = models.ManyToManyField(User)
+    # related_name is for reverse rel, user.thankedby_set() instead of 
+    #   user.post_set(), which clashes with the _author_ field
+    thanked_by = models.ManyToManyField(User, related_name='thankedby')
     flagged = models.BooleanField(default=False)
 
 
 
 # using this since User is provided by django
 class Profile(models.Model):
+
+    class Level(models.TextChoices):
+        ADMIN = 'GOD', _('God')
+        MOD = 'MOD', _('Janny')
+        USER = 'PLEB', _('Plebeian')
+        BANNED = 'B&', _('Forsaken')
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     join_date = models.DateTimeField('date joined')
     reputation = models.IntegerField('reputation points')
+    level =  models.CharField(max_length=5, choices=Level.choices, 
+                        default=Level.USER)
+    
+
 
 
 class Attachment(models.Model):
