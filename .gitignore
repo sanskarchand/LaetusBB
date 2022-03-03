@@ -1,5 +1,9 @@
-# Triepels' gitignore for django
+# webmaster's trivial config file
+static/hidden
+siteconf.ini
 
+# Triepels' gitignore for django
+#
 # Django #
 *.log
 *.pot

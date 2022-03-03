@@ -1,6 +1,17 @@
 from django.shortcuts import render
+from django.template import loader
 from django.http import HttpResponse
-import os
+from django.conf import settings
+
 
 def index(request):
-    return HttpResponse("Greetings. Location: /core. DB host is " + os.environ['DB_HOST'])
+    template = loader.get_template('core/index.html')
+
+    context = {
+        'forum_title': 'Namarie forums',
+        'bg_path': settings.SITE_CONFIG['general']['BackgroundImage']
+    }
+
+    resp = HttpResponse(template.render(context, request))
+    resp.headers['X-Sanskar-Debug'] = settings.SITE_CONFIG['general']['BackgroundImage']
+    return resp
