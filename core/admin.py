@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Thread, Post, Forum
+from .models import  Forum
+from apps.thread.models import Thread, Post
 
 admin.site.register(Forum)
 admin.site.register(Thread)

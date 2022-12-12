@@ -8,7 +8,7 @@ def index(request):
     template = loader.get_template('core/index.html')
 
     context = {
-        'forum_title': 'Namarie forums',
+        'forum_title': settings.SITE_CONFIG['general']['ForumTitle'],
         'bg_path': settings.SITE_CONFIG['general']['BackgroundImage']
     }
 
