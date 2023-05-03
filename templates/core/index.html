@@ -1,16 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{forum_title}}</title>
-    <style>
-      body {
-        background-image:  url({{bg_path}});
-      };
-    </style>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  </head>
-<body>
+{% extends "base.html" %}
+
+{# Overrides #}
+{%block title%}{{forum_title}}{% endblock %}
+
+{% block content %}
   <p> I bid you welcome, weary traveler.</p>
-</body>
-</html>
+{% endblock %}

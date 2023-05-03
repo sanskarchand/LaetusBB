@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>{% block title %}BASE{% endblock %}</title>
+    <style>
+      body {
+        background-image:  url({{bg_path}});
+      };
+    </style>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+<body>
+    {% block content %}{# override this #}{% endblock %}
+</body>
+</html>
