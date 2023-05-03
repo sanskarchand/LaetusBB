@@ -6,8 +6,9 @@ class Forum(models.Model):
     category = models.CharField(max_length=256)
     title = models.CharField(max_length=256)
 
+    # TODO: add various moderator-specific permissions
+
+
     def __str__(self):
         return f"<Forum {self.title}, {self.category}>"
 
-
-    

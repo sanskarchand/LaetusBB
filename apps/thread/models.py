@@ -3,7 +3,7 @@ from core.models import Forum
 from django.contrib.auth.models import User
 
 class Thread(models.Model):
-    # many-to-one
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
     sticky = models.BooleanField(default=False)
 
