@@ -3,6 +3,20 @@
 {% block title %} {{forum_title}} - Log In {% endblock %}
 
 {% block content %}
-            
+
+<form class="baseform" method="post">
+    {# TODO: change to username? #}
+    <label for="email" >email: </label>
+    <div class="alert-red">{{errors.email}}</div>
+    <input name="email" id="email" type="email" novalidate/>
+
+
+    <label for="password" >pasword: </label>
+    <div class="alert-red">{{errors.password}}</div>
+    <input name="password" id="password" type="password" novalidate/>
+
+    <input type="submit" value="Login" />
+</form>
+       
 {% endblock %}
 
